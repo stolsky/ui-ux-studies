@@ -1,0 +1,297 @@
+/* https://colorkit.co/palette/ffadad-ffd6a5-fdffb6-caffbf-9bf6ff-a0c4ff-bdb2ff-ffc6ff/ */
+
+.Content {
+    position: relative;
+    grid-area: center;
+
+    /* TODO rename Title */
+    .Title {
+        position: absolute;
+        margin: 0;
+        font-variant: small-caps;
+        text-transform: capitalize;
+        font-size: 1.5rem;
+        padding-inline: 1rem;
+        z-index: 0;
+        letter-spacing: 0.2rem;
+        font-weight: bold;
+        opacity: 0;
+
+        &.TopLeft {
+            left: 0;
+            top: 0;
+        }
+        &.TopRight {
+            right: 0;
+            top: 0;
+        }
+        &.BottomRight {
+            right: 0;
+            bottom: 0;
+        }
+        &.BottomLeft {
+            left: 0;
+            bottom: 0;
+        }
+
+        &.Active {
+            opacity: 1;
+        }
+    }
+
+    .Page {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(100% - var(--gap) * 2);
+        height: calc(100% - var(--gap) * 2);
+        overflow: hidden;
+        padding: var(--gap);
+        transition: clip-path 0.4s;
+        --gap: 4em;
+        z-index: 1;
+
+        .Inner {
+            transition: opacity 0.6s;
+
+            .MainTitle,
+            .SubTitle {
+                font-family: AnekLatin, sans-serif;
+                margin: 0;
+                padding-inline: 3rem;
+                color: #00202e;
+            }
+
+            .MainTitle {
+                padding-block: 2rem;
+                letter-spacing: 0.1rem;
+                word-spacing: 0.4rem;
+                font-size: 3rem;
+
+                .Name {
+                    font-size: 4rem;
+                    text-transform: capitalize;
+                    font-variant: small-caps;
+                    padding-inline: 0.5rem;
+                    position: relative;
+                    display: inline-block;
+
+                    &::before,
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        height: 0.4rem;
+                        width: 0%;
+                        display: block;
+                        animation: underline-name 1.2s ease-in-out 0.8s forwards;
+                        background-color: #00202e;
+                    }
+                    &::before {
+                        left: -0.5rem;
+                        bottom: 0;
+                    }
+                    &::after {
+                        height: 0.2rem;
+                        left: 0.5rem;
+                        bottom: -0.5rem;
+                        animation-duration: 0.6s;
+                        animation-delay: 1.2s;
+                    }
+                }
+
+            }
+
+            .SubTitle {
+                font-size: 2rem;
+                letter-spacing: 0.05rem;
+                word-spacing: 0.2rem;
+            }
+
+        }
+
+        .SocialMediaLinks {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 2rem;
+            width: 15%;
+            height: 10%;
+    
+            .Icon {
+                cursor: pointer;
+                transition: color 0.4s;
+
+                &:hover {
+                    color: #00202e;
+                    animation: zoom-out-in 0.4s linear forwards;
+                }
+            }
+        }
+    }
+
+    .Page:not(.Active) {
+        
+    }
+    .Page:not(.Active) .Inner {
+        opacity: 0.3;
+    }
+
+    .Title.TopLeft:has(+.Page:not(.Active):hover),
+    .Title.TopRight:has(+.Page:not(.Active):hover) {
+        animation: bounce-up 0.5s linear forwards;
+        opacity: 1;
+    }
+    .Title.BottomRight:has(+.Page:not(.Active):hover),
+    .Title.BottomLeft:has(+.Page:not(.Active):hover) {
+        animation: bounce-down 0.5s linear forwards;
+        opacity: 1;
+    }
+
+    /* TopLeft Active */
+    .Title.TopLeft.Active {
+        translate: 0 -2rem;
+    }
+    .Page.TopLeft.Active {
+        clip-path: inset(0% 15% 10% 0% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopLeft.Active ~ .Page.TopRight {
+        clip-path: inset(0% 0% 10% 85% round 0% 1rem 0% 1rem);
+    }
+    .Page.TopLeft.Active ~ .Page.BottomRight {
+        clip-path: inset(90% 0% 0% 85% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopLeft.Active ~ .Page.BottomLeft {
+        clip-path: inset(90% 15% 0% 0% round 0% 1rem 0% 1rem);
+    }
+
+    /* TopRight Active */
+    .Title.TopRight.Active {
+        translate: 0 -2rem;
+    }
+    .Page.TopRight.Active {
+        clip-path: inset(0% 0% 10% 5% round 0% 1rem 0% 1rem);
+    }
+    .Page.TopLeft:has(~ .Page.TopRight.Active) {
+        clip-path: inset(0% 95% 10% 0% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopRight.Active ~ .Page.BottomRight {
+        clip-path: inset(90% 0% 0% 5% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopRight.Active ~ .Page.BottomLeft {
+        clip-path: inset(90% 95% 0% 0% round 0% 1rem 0% 1rem);
+    }
+
+    /* BottomRight Active */
+    .Title.BottomRight.Active {
+        translate: 0 2rem;
+    }
+    .Page.BottomRight.Active {
+        clip-path: inset(10% 0% 0% 5% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopLeft:has(~ .Page.BottomRight.Active) {
+        clip-path: inset(0% 95% 90% 0% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopRight:has(~ .Page.BottomRight.Active) {
+        clip-path: inset(0% 0% 90% 5% round 0% 1rem 0% 1rem);
+    }
+    .Page.BottomRight.Active ~ .Page.BottomLeft {
+        clip-path: inset(10% 95% 0% 0% round 0% 1rem 0% 1rem);
+    }
+    
+    /* BottomLeft Active */
+    .Title.BottomLeft.Active {
+        translate: 0 2rem;
+    }
+    .Page.BottomLeft.Active {
+        clip-path: inset(10% 15% 0% 0% round 0% 1rem 0% 1rem);
+    }
+    .Page.TopLeft:has(~ .Page.BottomLeft.Active) {
+        clip-path: inset(0% 15% 90% 0% round 1rem 0% 1rem 0%);
+    }
+    .Page.TopRight:has(~ .Page.BottomLeft.Active) {
+        clip-path: inset(0% 0% 90% 85% round 0% 1rem 0% 1rem);
+    }
+    .Page.BottomRight:has(~ .Page.BottomLeft.Active) {
+        clip-path: inset(10% 0% 0% 85% round 1rem 0% 1rem 0%);
+    }
+
+}
+
+@keyframes zoom-out-in {
+    0% {
+        scale: 1;
+    }
+    50% {
+        scale: 0.8;
+    }
+    100% {
+        scale: 1.2;
+    }
+}
+
+@keyframes bounce-up {
+    0%, 50%, 75%, 100% {
+        translate: 0 -2rem;
+    }  
+    25% {
+        translate: 0 -2.5rem;
+    }
+    62.5% {
+        translate: 0 -2.25rem;
+    }
+    95% {
+        translate: 0 -2.125rem;
+    }
+}
+
+@keyframes bounce-down {
+    0%, 50%, 75%, 100% {
+        translate: 0 2rem;
+    }  
+    25% {
+        translate: 0 2.5rem;
+    }
+    62.5% {
+        translate: 0 2.25rem;
+    }
+    95% {
+        translate: 0 2.125rem;
+    }
+}
+
+@keyframes underline-name {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion) {
+
+    .Title.TopLeft:has(+.Page:not(.Active):hover),
+    .Title.TopRight:has(+.Page:not(.Active):hover) {
+        animation: bounce-up 0s linear forwards;
+    }
+    .Title.BottomRight:has(+.Page:not(.Active):hover),
+    .Title.BottomLeft:has(+.Page:not(.Active):hover) {
+        animation: bounce-down 0s linear forwards;
+    }
+
+    .Content {
+        .Page {
+            transition: none;
+        
+            .Inner {
+                transition: none;
+            }
+        }    
+    }
+}

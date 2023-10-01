@@ -1,25 +1,25 @@
-import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { component$ } from "@builder.io/qwik"
+import type { DocumentHead } from "@builder.io/qwik-city"
+import Content from "~/components/Content/content"
+
+// import Menu from "~/components/Menu/menu"
+import structure from "~/components/Content/structure"
 
 export default component$(() => {
-  return (
-    <>
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
-    </>
-  );
-});
+    const structure_items = Object.values(structure)
+    return (
+        <div class="Container">
+            <Content items={structure_items} />
+        </div>
+    )
+})
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: "stolsky.dev",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
-    },
-  ],
-};
+      content: ""
+    }
+  ]
+}
